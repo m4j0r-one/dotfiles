@@ -45,18 +45,18 @@ Conky dashboard.
 
 ## Installation paths
 
-| Repository path | Target location |
-| --- | --- |
-| `config/niri` | `~/.config/niri` |
-| `config/ghostty` | `~/.config/ghostty` |
-| `config/noctalia` | `~/.config/noctalia` |
-| `config/walker` | `~/.config/walker` |
-| `config/fastfetch` | `~/.config/fastfetch` |
+| Repository path     | Target location        |
+| ------------------- | ---------------------- |
+| `config/niri`       | `~/.config/niri`       |
+| `config/ghostty`    | `~/.config/ghostty`    |
+| `config/noctalia`   | `~/.config/noctalia`   |
+| `config/walker`     | `~/.config/walker`     |
+| `config/fastfetch`  | `~/.config/fastfetch`  |
 | `config/quickshell` | `~/.config/quickshell` |
-| `config/cava` | `~/.config/cava` |
-| `local/bin` | `~/.local/bin` |
-| `local/share` | `~/.local/share` |
-| `scripts/conky` | `~/scripts/Conky` |
+| `config/cava`       | `~/.config/cava`       |
+| `local/bin`         | `~/.local/bin`         |
+| `local/share`       | `~/.local/share`       |
+| `scripts/conky`     | `~/scripts/Conky`      |
 
 Back up your existing configuration before copying anything.
 
@@ -106,6 +106,7 @@ automation, homelabs and open source.
 
 - Website: https://m4j0r.one
 - Instagram: https://www.instagram.com/m4j0r_0ne
+- Discord: https://discord.gg/m65trXh65e
 
 ## License
 
