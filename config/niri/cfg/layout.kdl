@@ -1,0 +1,38 @@
+    layout {
+        gaps 16 // Gap between windows
+        center-focused-column "never" // Don’t auto-center focused column
+
+        background-color "transparent" // <- needed for noctalia-shell to set wallpaper
+
+        // m4j0r-One: dezenter Fokusrahmen
+        focus-ring {
+            width 1
+            active-color "#00E5FF99"
+            inactive-color "#2B0A3333"
+            urgent-color "#FF2FAEFF"
+        }
+
+        // Kein zusätzlicher permanenter Rahmen
+        border {
+            off
+        }
+
+        // Weicher dunkler Schatten für räumliche Trennung
+        shadow {
+            on
+            softness 22
+            spread 2
+            offset x=0 y=4
+            color "#000000D9"
+            inactive-color "#00000080"
+        }
+
+
+        preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+        }
+
+        struts {}
+    }

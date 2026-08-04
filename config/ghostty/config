@@ -1,0 +1,41 @@
+# ─── m4j0r.one Ghostty ───────────────────────────────
+
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+
+
+# ─── Farben und Transparenz ──────────────────────────
+
+background = #03060c
+foreground = #d9f7ff
+
+background-opacity = 0.76
+background-opacity-cells = true
+
+selection-background = #14303a
+selection-foreground = #d9f7ff
+
+
+# ─── Fenster ─────────────────────────────────────────
+
+window-padding-x = 20
+window-padding-y = 18
+
+window-theme = dark
+
+
+# ─── Cursor ──────────────────────────────────────────
+
+cursor-style = bar
+cursor-style-blink = false
+
+cursor-color = #00e5ff
+cursor-text = #03060c
+
+adjust-cursor-thickness = 3
+
+
+# ─── m4j0r.one Neon Cursor Shader ────────────────────
+
+custom-shader = /home/YOUR_USERNAME/.config/ghostty/shaders/m4j0r-neon-cursor.glsl
+custom-shader-animation = true

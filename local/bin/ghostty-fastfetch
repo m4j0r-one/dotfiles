@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+exec fastfetch \
+    --config "$HOME/.config/fastfetch/ghostty.jsonc" \
+    --pipe false

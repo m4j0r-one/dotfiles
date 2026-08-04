@@ -1,0 +1,419 @@
+    window-rule {
+        geometry-corner-radius 16 // Set every window radius to 16
+        clip-to-geometry true
+    }
+
+     // if you use steam you will probably like these
+    window-rule {
+        match app-id="steam"
+        exclude title=r#"^[Ss]team$"#
+        open-floating true
+    }
+
+    window-rule {
+       match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+       default-floating-position x=10 y=10 relative-to="bottom-right"
+       open-focused false
+    }
+
+    layer-rule {
+      match namespace=r#"^noctalia-wallpaper.*$"#
+        place-within-backdrop true
+    }
+
+
+    // m4j0r: Noctalia Frosted Glass
+    // Noctalia liefert selbst die exakte Blur-Form für Bar und Panels.
+    layer-rule {
+        match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+
+        background-effect {
+            xray true
+        }
+    }
+
+
+       // m4j0r: Noctalia darf Fenster auf DP-1 nicht verdecken
+    layer-rule {
+        match namespace="^noctalia-background-DP-1$"
+
+        background-effect {
+            blur false
+            xray false
+        }
+    }
+
+// m4j0r-fullwidth-apps
+window-rule {
+    match app-id=r#"^firefox$"#
+    exclude title="^Picture-in-Picture$"
+
+    open-maximized true
+}
+
+// m4j0r: Conky Frosted Glass
+layer-rule {
+    match namespace="^conky_namespace$"
+
+    background-effect {
+        blur true
+        xray true
+        saturation 0.95
+        noise 0.003
+    }
+}
+
+// m4j0r: EasyEffects auf DP-2
+window-rule {
+    match app-id=r#"^com\.github\.wwmm\.easyeffects$"#
+
+    open-on-output "DP-2"
+    open-floating true
+
+    default-column-width { fixed 820; }
+    default-window-height { fixed 620; }
+
+    default-floating-position x=24 y=105 relative-to="bottom-right"
+}
+
+// m4j0r: Audio Visualizer Frosted Glass
+layer-rule {
+    match namespace="^m4j0r-audio-visualizer$"
+
+    background-effect {
+        blur true
+        xray true
+        saturation 0.95
+        noise 0.003
+    }
+}
+
+// m4j0r: World of Warcraft Gaming
+window-rule {
+    match app-id=r#"^steam_app_4107387238$"# title=r#"^World of Warcraft$"#
+
+    open-on-output "DP-1"
+    open-floating false
+    open-fullscreen true
+}
+
+// m4j0r: Vollbreiten-Hintergrund der DP-2-Bar unsichtbar
+// Die mittlere Capsule und deren Widgets bleiben erhalten.
+layer-rule {
+    match namespace="^noctalia-background-DP-2$"
+
+    background-effect {
+        blur true
+        xray true
+    }
+}
+
+// BEGIN m4j0r Python Workspace
+
+workspace "python" {
+    open-on-output "DP-1"
+}
+
+// Ghostty mit festem Python-Arbeitsplatz.
+window-rule {
+    match app-id=r#"(?i).*ghostty.*"# title="^m4j0r-python-terminal$"
+
+
+
+    open-maximized false
+    open-on-workspace "python"
+    default-column-width { proportion 0.5; }
+    open-focused true
+}
+
+// END m4j0r Python Workspace
+
+
+// ------------------------------------------------------------
+// Nautilus – dezenter Neon-Glass-Blur
+// ------------------------------------------------------------
+
+window-rule {
+    match app-id="Nautilus"
+
+    // Verhindert den blauen Fokus-Hintergrund im transparenten Fenster.
+    draw-border-with-background false
+
+    opacity 0.45
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.02
+        saturation 1.35
+    }
+
+    popups {
+        geometry-corner-radius 15
+        opacity 0.95
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.02
+            saturation 1.35
+        }
+    }
+}
+
+// BEGIN m4j0r Spotify Neon Glass
+window-rule {
+    match app-id=r#"(?i)spotify"#
+
+    draw-border-with-background false
+    opacity 0.90
+
+    geometry-corner-radius 18
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.02
+        saturation 1.35
+    }
+
+    popups {
+        geometry-corner-radius 14
+        opacity 0.98
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.015
+            saturation 1.25
+        }
+    }
+}
+// END m4j0r Spotify Neon Glass
+
+
+// BEGIN m4j0r Ghostty Neon Glass
+window-rule {
+    match app-id=r#"(?i).*ghostty.*"#
+
+    draw-border-with-background false
+
+    geometry-corner-radius 18
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.02
+        saturation 1.35
+    }
+
+    popups {
+        geometry-corner-radius 14
+        opacity 0.98
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.015
+            saturation 1.25
+        }
+    }
+}
+// END m4j0r Ghostty Neon Glass
+
+// BEGIN m4j0r Ghostty Half Width
+window-rule {
+    match app-id=r#"(?i).*ghostty.*"#
+
+    open-maximized false
+    open-maximized-to-edges false
+    open-fullscreen false
+
+    default-column-width {
+        proportion 0.5
+    }
+}
+// END m4j0r Ghostty Half Width
+
+// BEGIN m4j0r Firefox Neon Glass
+window-rule {
+    match app-id=r#"^firefox$"#
+
+    draw-border-with-background false
+
+    // Erforderlich, damit der Niri-Blur sichtbar wird.
+    opacity 0.90
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.018
+        saturation 1.30
+    }
+
+    popups {
+        geometry-corner-radius 13
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.014
+            saturation 1.24
+        }
+    }
+}
+// END m4j0r Firefox Neon Glass
+
+// BEGIN m4j0r Tauon Neon Glass
+window-rule {
+    match app-id="tauonmb"
+
+    // Kein farbiger Fokus-Hintergrund
+    draw-border-with-background false
+
+    // Dunkler Glass-Look
+    opacity 0.88
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.018
+        saturation 1.35
+    }
+
+    popups {
+        geometry-corner-radius 13
+        opacity 0.96
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.014
+            saturation 1.25
+        }
+    }
+}
+// END m4j0r Tauon Neon Glass
+
+// BEGIN m4j0r Zed Neon Glass
+window-rule {
+    match app-id=r#"^(dev\.zed\.Zed|zed|Zed)$"#
+
+    open-maximized false
+    open-maximized-to-edges false
+    open-fullscreen false
+    open-on-workspace "python"
+    default-column-width { proportion 0.5; }
+    open-focused true
+
+    draw-border-with-background false
+    opacity 0.94
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.018
+        saturation 1.32
+    }
+
+    popups {
+        geometry-corner-radius 13
+        opacity 0.98
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.014
+            saturation 1.24
+        }
+    }
+}
+// END m4j0r Zed Neon Glass
+
+// Diablo 4
+window-rule {
+    match app-id="steam_app_2344520"
+
+    open-on-output "DP-1"
+    open-fullscreen true
+}
+// End Diablo 4
+// ─── Ghostty: m4j0r.one Blur ─────────────────────────
+
+window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        saturation 1.15
+        noise 0.01
+    }
+}
+
+// BEGIN m4j0r Thunderbird Neon Glass
+window-rule {
+    match app-id=r#"^org\.mozilla\.Thunderbird$"#
+
+    draw-border-with-background false
+
+    // Höher als bei Firefox, damit Mailtexte gut lesbar bleiben.
+    opacity 0.92
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.018
+        saturation 1.30
+    }
+
+    popups {
+        geometry-corner-radius 13
+        opacity 0.98
+
+        background-effect {
+            blur true
+            xray true
+            noise 0.014
+            saturation 1.24
+        }
+    }
+}
+// END m4j0r Thunderbird Neon Glass
+
+// BEGIN m4j0r Discord Neon Glass
+window-rule {
+    match app-id=r#"^discord$"#
+
+    draw-border-with-background false
+
+    // Transparenz – guter Mittelweg zwischen Glas und Lesbarkeit
+    opacity 0.90
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray true
+        noise 0.018
+        saturation 1.30
+    }
+}
+// END m4j0r Discord Neon Glass

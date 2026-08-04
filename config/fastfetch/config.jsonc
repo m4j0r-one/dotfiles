@@ -1,0 +1,118 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/m4j0r-tux.txt",
+    "padding": {
+      "top": 1,
+      "left": 0,
+      "right": 2
+    },
+    "printRemaining": false,
+    "color": {
+      "1": "38;2;39;229;255",
+      "2": "38;2;255;79;216",
+      "3": "38;2;255;209;102",
+      "4": "38;2;216;247;255"
+    }
+  },
+  "display": {
+    "separator": ": ",
+    "color": {
+      "separator": "#53677F"
+    },
+    "key": {
+      "width": 14
+    }
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "{##FF4FD8}m4j0r.one {##27E5FF}// NIRI{#}"
+    },
+    {
+      "type": "custom",
+      "format": "{##173D59}──────────────────────────────{#}"
+    },
+    {
+      "type": "os",
+      "key": "󰣇  OS",
+      "keyColor": "#27E5FF"
+    },
+    {
+      "type": "host",
+      "key": "󰌢  Host",
+      "keyColor": "#FF4FD8"
+    },
+    {
+      "type": "kernel",
+      "key": "󰒋  Kernel",
+      "keyColor": "#27E5FF"
+    },
+    {
+      "type": "uptime",
+      "key": "󰅐  Uptime",
+      "keyColor": "#FF4FD8"
+    },
+    {
+      "type": "packages",
+      "key": "󰏖  Pakete",
+      "keyColor": "#27E5FF"
+    },
+    {
+      "type": "shell",
+      "key": "󰆍  Shell",
+      "keyColor": "#FF4FD8"
+    },
+    {
+      "type": "wm",
+      "key": "󰖲  WM",
+      "keyColor": "#27E5FF"
+    },
+    {
+      "type": "terminal",
+      "key": "  Terminal",
+      "keyColor": "#FF4FD8"
+    },
+    {
+      "type": "cpu",
+      "key": "󰻠  CPU",
+      "keyColor": "#27E5FF",
+      "format": "{name}"
+    },
+    {
+      "type": "gpu",
+      "key": "󰢮  GPU",
+      "keyColor": "#FF4FD8",
+      "driverSpecific": true,
+      "hideType": "integrated",
+      "format": "{name}"
+    },
+    {
+      "type": "memory",
+      "key": "󰍛  RAM",
+      "keyColor": "#27E5FF"
+    },
+    {
+      "type": "disk",
+      "key": "󰋊  Root",
+      "keyColor": "#FF4FD8",
+      "folders": "/"
+    },
+    {
+      "type": "localip",
+      "key": "󰩟  LAN",
+      "keyColor": "#27E5FF",
+      "compact": true
+    },
+    {
+      "type": "custom",
+      "format": "{##173D59}──────────────────────────────{#}"
+    },
+    {
+      "type": "colors",
+      "key": " ",
+      "symbol": "circle"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+// ────────────── Input Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+
+input {
+    keyboard {
+        xkb {
+            //If you want to overwrite your keyboard layout,
+            // uncomment the line below and change the layout accordingly.
+            layout "de" // Deutsches Tastaturlayout
+        }
+        numlock // Enable numlock on startup
+    }
+
+    touchpad {
+        tap // Enable tap-to-click
+        natural-scroll // Enable natural (macOS-style) scrolling
+    }
+
+    mouse {
+        // If you want to disable Mouse Acceleration,
+        // uncomment the lines below.
+        //accel-profile "flat"
+        //accel-speed 0.0
+    }
+
+    // Maus folgt einem per Tastatur fokussierten oder verschobenen Fenster.
+    warp-mouse-to-focus mode="center-xy"
+
+    // Mausfokus bleibt aktiv, darf aber den horizontalen Ausschnitt nicht verschieben.
+    focus-follows-mouse max-scroll-amount="0%"
+    workspace-auto-back-and-forth // Enable workspace back & forth switching
+}

@@ -1,0 +1,23 @@
+include "./cfg/animation.kdl"
+include "./cfg/autostart.kdl"
+include "./cfg/keybinds.kdl"
+include "./cfg/input.kdl"
+include "./cfg/display.kdl"
+include "./cfg/layout.kdl"
+include "./cfg/rules.kdl"
+include "./cfg/misc.kdl"
+
+// Grafische Passwortabfragen ohne KDE
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+// ─── Ghostty: Blur und runde Ecken ──────────────────
+window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+    }
+}

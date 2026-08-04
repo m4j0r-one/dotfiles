@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Runtime data
+*.log
+*.pid
+logs/
+runtime/
+
+# Local backups
+backups/
+*.bak
+*.bak-*
+*.backup-*
+*~
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/

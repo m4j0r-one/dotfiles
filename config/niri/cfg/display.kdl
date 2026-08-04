@@ -1,0 +1,24 @@
+// Zweitmonitor links: LG Ultrawide
+output "DP-2" {
+    mode "2560x1080@74.991"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+
+    // Linken Bereich dauerhaft für Conky freihalten
+    layout {
+        struts {
+            left 850
+        }
+    }
+}
+
+// Hauptmonitor rechts: Gigabyte G34WQC A
+output "DP-1" {
+    mode "3440x1440@144.000"
+    scale 1
+    transform "normal"
+    position x=2560 y=0
+    // VRR deaktiviert wegen Monitorflackern
+    focus-at-startup
+}
