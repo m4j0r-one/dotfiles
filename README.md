@@ -1,3 +1,7 @@
+## Screenshot
+
+![My CachyOS and Niri desktop](screenshots/desktop.png)
+
 # m4j0r.one Dotfiles
 
 My personal CachyOS and Niri desktop configuration.
