@@ -1,0 +1,25 @@
+{
+  "id": "m4j0r-shortcuts",
+  "name": "m4j0r Shortcut Cheatsheet",
+  "version": "1.4.0",
+  "minNoctaliaVersion": "4.6.6",
+  "author": "m4j0r",
+  "license": "MIT",
+  "description": "Frosted-glass styled shortcut panel for Yazi, spotify_player and Niri.",
+  "tags": [
+    "Bar",
+    "Panel",
+    "Productivity",
+    "Niri"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {}
+  }
+}

@@ -27,8 +27,8 @@
 
     // m4j0r: effizienter Niri-Blur
     blur {
-        passes 2
-        offset 3
-        noise 0.02
-        saturation 1.35
-    }
+    passes 3
+    offset 3.0
+    noise 0.02
+    saturation 1.2
+}

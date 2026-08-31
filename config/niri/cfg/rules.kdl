@@ -87,6 +87,19 @@ layer-rule {
         noise 0.003
     }
 }
+// m4j0r: Battle.net immer im Tiling öffnen
+window-rule {
+    match app-id=r#"^steam_app_4107387238$"# title=r#"^Battle\.net$"#
+
+    open-floating false
+}
+
+// m4j0r: Unsichtbares Battle.net-Hilfsfenster ausblenden
+window-rule {
+    match app-id=r#"^steam_app_4107387238$"# title=r#"^$"#
+
+    opacity 0.0
+}
 
 // m4j0r: World of Warcraft Gaming
 window-rule {
@@ -417,3 +430,18 @@ window-rule {
     }
 }
 // END m4j0r Discord Neon Glass
+
+// Rimworld
+window-rule {
+    match app-id=r#"^gamescope$"#
+
+    open-on-output "DP-1"
+}
+
+layer-rule {
+    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+
+    background-effect {
+        xray false
+    }
+}

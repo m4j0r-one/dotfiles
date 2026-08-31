@@ -7,8 +7,12 @@
 My personal CachyOS and Niri desktop configuration.
 
 This repository contains the configuration behind my current desktop setup,
-including Niri, Noctalia, Ghostty, Walker, Fastfetch, Quickshell and a modular
-Conky dashboard.
+including Niri, Noctalia, Ghostty, Walker, Fastfetch, Quickshell, CAVA and a
+modular Conky dashboard.
+
+The setup is built around a two-monitor Niri workflow and includes custom
+desktop styling, window rules, utility scripts, audio visualization and
+Noctalia extensions.
 
 > This is a snapshot of my personal setup, not a universal one-command
 > installer. Some paths, displays and system-specific modules need to be
@@ -16,32 +20,43 @@ Conky dashboard.
 
 ## Included components
 
-- Niri configuration with modular KDL files
-- Noctalia settings
+- Niri configuration split into modular KDL files
+- Custom Niri window rules for applications, launchers and games
+- Noctalia configuration
+- Custom `m4j0r-One` Noctalia color scheme
+- Custom local `m4j0r-shortcuts` Noctalia plugin
 - Ghostty configuration and custom cursor shader
 - Walker configuration and custom theme
 - Fastfetch configurations and artwork
 - Quickshell/CAVA audio visualizer
 - Modular Conky dashboard
 - Spotify and Tauon artwork helpers
-- Custom utility scripts
+- Multi-monitor wallpaper helper
+- Custom utility and startup scripts
 
 ## Repository structure
 
-    .
-    ├── config/
-    │   ├── cava/
-    │   ├── fastfetch/
-    │   ├── ghostty/
-    │   ├── niri/
-    │   ├── noctalia/
-    │   ├── quickshell/
-    │   └── walker/
-    ├── local/
-    │   ├── bin/
-    │   └── share/
-    └── scripts/
-        └── conky/
+```
+.
+├── config/
+│   ├── cava/
+│   ├── fastfetch/
+│   ├── ghostty/
+│   ├── niri/
+│   ├── noctalia/
+│   │   ├── colorschemes/
+│   │   │   └── m4j0r-One/
+│   │   └── plugins/
+│   │       └── m4j0r-shortcuts/
+│   ├── quickshell/
+│   └── walker/
+├── local/
+│   ├── bin/
+│   └── share/
+├── screenshots/
+└── scripts/
+    └── conky/
+```
 
 ## Installation paths
 
@@ -64,38 +79,113 @@ Back up your existing configuration before copying anything.
 
 Search the repository for these placeholders:
 
-    YOUR_USERNAME
-    YOUR_SERVER_IP
+```
+YOUR_USERNAME
+YOUR_SERVER_IP
+```
 
 You should also review:
 
 - `config/niri/cfg/display.kdl` for monitor names and resolutions
 - `config/niri/cfg/autostart.kdl` for personal startup applications
-- `config/niri/cfg/keybinds.kdl` for application paths
-- `config/noctalia/settings.json` for wallpaper and avatar paths
+- `config/niri/cfg/keybinds.kdl` for application paths and shortcuts
+- `config/niri/cfg/rules.kdl` for application and game-specific window rules
+- `config/noctalia/settings.json` for wallpaper, avatar, weather and display settings
+- `config/quickshell/m4j0r-visualizer/` for the CAVA visualizer configuration
 - the Conky storage, backup and home-server cards
 - font names used by Ghostty, Walker, Fastfetch and Conky
 
 The supplied Niri configuration is designed around two displays named
 `DP-1` and `DP-2`.
 
+Monitor names and assignments should always be adjusted to match your own
+system.
+
+## Niri notes
+
+The Niri configuration is separated into multiple files under:
+
+```
+config/niri/cfg/
+```
+
+This keeps display settings, keybindings, startup commands, window rules and
+visual settings easier to maintain.
+
+The current setup also contains application-specific rules for software such
+as Battle.net and Gamescope-based games.
+
+These rules depend on application IDs, window titles and monitor names from
+my system and may need to be adapted before use.
+
+Validate changes with:
+
+```
+niri validate
+```
+
+## Noctalia notes
+
+The repository includes my custom Noctalia color scheme:
+
+```
+config/noctalia/colorschemes/m4j0r-One/
+```
+
+It also includes my local shortcuts plugin:
+
+```
+config/noctalia/plugins/m4j0r-shortcuts/
+```
+
+Additional plugins such as the Noctalia calculator and polkit agent are
+referenced through `plugins.json` and come from the upstream Noctalia plugin
+repository. Their source files are not duplicated here.
+
+Wallpaper and avatar paths inside `settings.json` use placeholders and must be
+adjusted for your own system.
+
+## Quickshell / CAVA visualizer
+
+The desktop includes a custom Quickshell audio visualizer driven by CAVA.
+
+Relevant files are stored under:
+
+```
+config/quickshell/m4j0r-visualizer/
+config/cava/
+```
+
+The visualizer expects its CAVA configuration in the user's home directory,
+so the username placeholder must be adjusted after installation.
+
 ## Conky notes
 
-The dashboard contains several machine-specific modules. Cards related to
-storage, backups and home-server monitoring require local customization.
+The dashboard contains several machine-specific modules.
+
+Cards related to storage, backups, DNS and home-server monitoring require
+local customization before they will work on another system.
 
 The custom Conky binary used on my system is not included. The startup script
 first checks:
 
-    ~/.local/opt/conky-niri/bin/conky
+```
+~/.local/opt/conky-niri/bin/conky
+```
 
 If that executable is unavailable, it falls back to the regular `conky`
 command from the system.
 
 ## Status
 
-This is the first public version prepared for sharing. Documentation and
-installation helpers may be expanded over time.
+This repository is an actively maintained snapshot of my current CachyOS +
+Niri desktop.
+
+I update it as the setup evolves, so individual configurations may change as
+I test new tools, workflows and desktop ideas.
+
+It is primarily meant as a reference and source of ideas rather than a fully
+automated distribution-independent setup.
 
 ## m4j0r.one Community
 
