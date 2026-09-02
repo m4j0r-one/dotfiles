@@ -35,6 +35,9 @@ declare -a ROOT_PATHS=(
     "/etc/openvpn"
     "/etc/credstore"
     "/etc/credstore.encrypted"
+    "/etc/coolercontrol/.passwd"
+    "/etc/coolercontrol/coolercontrol.key"
+    "/etc/coolercontrol/coolercontrol.crt"
 )
 
 RUNTIME_DIR=""
