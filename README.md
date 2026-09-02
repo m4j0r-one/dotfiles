@@ -36,7 +36,7 @@ Noctalia extensions.
 
 ## Repository structure
 
-```
+```text
 .
 ├── config/
 │   ├── cava/
@@ -49,31 +49,82 @@ Noctalia extensions.
 │   │   └── plugins/
 │   │       └── m4j0r-shortcuts/
 │   ├── quickshell/
-│   └── walker/
+│   ├── systemd/
+│   │   └── user/
+│   ├── walker/
+│   └── zsh/
+│       └── python-shell/
+├── home/
+│   ├── .p10k.zsh
+│   └── .zshrc
 ├── local/
 │   ├── bin/
 │   └── share/
 ├── screenshots/
 └── scripts/
-    └── conky/
+    ├── conky/
+    ├── python-projects-backup.sh
+    └── weekly-backup-runner.sh
 ```
 
 ## Installation paths
 
-| Repository path     | Target location        |
-| ------------------- | ---------------------- |
-| `config/niri`       | `~/.config/niri`       |
-| `config/ghostty`    | `~/.config/ghostty`    |
-| `config/noctalia`   | `~/.config/noctalia`   |
-| `config/walker`     | `~/.config/walker`     |
-| `config/fastfetch`  | `~/.config/fastfetch`  |
-| `config/quickshell` | `~/.config/quickshell` |
-| `config/cava`       | `~/.config/cava`       |
-| `local/bin`         | `~/.local/bin`         |
-| `local/share`       | `~/.local/share`       |
-| `scripts/conky`     | `~/scripts/Conky`      |
+| Repository path                     | Target location                       |
+| ----------------------------------- | ------------------------------------- |
+| `config/niri`                       | `~/.config/niri`                      |
+| `config/ghostty`                    | `~/.config/ghostty`                   |
+| `config/noctalia`                   | `~/.config/noctalia`                  |
+| `config/walker`                     | `~/.config/walker`                    |
+| `config/fastfetch`                  | `~/.config/fastfetch`                 |
+| `config/quickshell`                 | `~/.config/quickshell`                |
+| `config/cava`                       | `~/.config/cava`                      |
+| `config/zsh`                        | `~/.config/zsh`                       |
+| `config/systemd/user`               | `~/.config/systemd/user`              |
+| `home/.zshrc`                       | `~/.zshrc`                            |
+| `home/.p10k.zsh`                    | `~/.p10k.zsh`                         |
+| `local/bin`                         | `~/.local/bin`                        |
+| `local/share`                       | `~/.local/share`                      |
+| `scripts/conky`                     | `~/scripts/Conky`                     |
+| `scripts/python-projects-backup.sh` | `~/scripts/python-projects-backup.sh` |
+| `scripts/weekly-backup-runner.sh`   | `~/scripts/weekly-backup-runner.sh`   |
 
 Back up your existing configuration before copying anything.
+
+## Backup automation
+
+The setup includes a weekly backup runner:
+
+```text
+~/scripts/weekly-backup-runner.sh
+```
+
+It coordinates six separate backup modules:
+
+1. Conky configuration and helper scripts
+2. General scripts
+3. Program configuration
+4. Niri configuration
+5. Python projects
+6. Encrypted private data
+
+The Python project backup stores:
+
+```text
+~/Projekte/Python
+```
+
+and deliberately excludes project-local `.venv` directories. Virtual environments are recreated after restoration from the project's `pyproject.toml`.
+
+The backup runner is started through the user-level systemd units:
+
+```text
+~/.config/systemd/user/m4j0r-weekly-backup.service
+~/.config/systemd/user/m4j0r-weekly-backup.timer
+```
+
+Additional user timers update the DNS and Unraid cache data used by the Conky dashboard.
+
+After restoring the systemd user units, reload systemd and enable the required timers before relying on the automation.
 
 ## Required customization
 
