@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+ROOT="$HOME/Projekte/Python"
+
+if [[ $# -ge 1 ]]; then
+    NAME="$1"
+else
+    read -r -p "Name des neuen Python-Projekts: " NAME
+fi
+
+if [[ ! "$NAME" =~ ^[a-zA-Z0-9][a-zA-Z0-9_-]*$ ]]; then
+    echo "Ungültiger Projektname."
+    echo "Erlaubt sind Buchstaben, Zahlen, Bindestrich und Unterstrich."
+    exit 1
+fi
+
+PROJECT="$ROOT/$NAME"
+PACKAGE_NAME="${NAME//-/_}"
+
+if [[ -e "$PROJECT" ]]; then
+    echo "Das Projekt existiert bereits:"
+    echo "  $PROJECT"
+    exit 1
+fi
+
+echo "Erstelle Projekt: $PROJECT"
+
+mkdir -p "$PROJECT"
+cd "$PROJECT"
+
+python -m venv .venv
+
+cat > main.py <<'PY'
+def main() -> None:
+    name = input("Wie heißt du? ")
+    print(f"Hallo, {name}! Dein Python-Projekt funktioniert.")
+
+
+if __name__ == "__main__":
+    main()
+PY
+
+cat > pyproject.toml <<PYPROJECT
+[project]
+name = "$PACKAGE_NAME"
+version = "0.1.0"
+description = "Python-Übungsprojekt"
+requires-python = ">=3.14"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
+PYPROJECT
+
+cat > .gitignore <<'GITIGNORE'
+# Virtuelle Python-Umgebung
+.venv/
+
+# Python-Cache
+__pycache__/
+*.py[cod]
+
+# Test- und Werkzeug-Caches
+.pytest_cache/
+.ruff_cache/
+.pyright/
+.coverage
+
+# Editor- und Betriebssystemdateien
+.DS_Store
+GITIGNORE
+
+cat > README.md <<EOFREADME
+# $NAME
+
+Python-Übungsprojekt von m4j0r.one.
+
+## Umgebung aktivieren
+
+\`\`\`bash
+cd "$PROJECT"
+source .venv/bin/activate
+\`\`\`
+
+## Programm starten
+
+\`\`\`bash
+python main.py
+\`\`\`
+
+## Code prüfen
+
+\`\`\`bash
+ruff check .
+pyright
+\`\`\`
+
+## Code formatieren
+
+\`\`\`bash
+ruff format .
+\`\`\`
+
+## Umgebung verlassen
+
+\`\`\`bash
+deactivate
+\`\`\`
+EOFREADME
+
+git init --quiet
+git add .
+git commit --quiet -m "Initiales Python-Übungsprojekt" 2>/dev/null || true
+
+echo
+echo "Projekt wurde erfolgreich erstellt."
+echo
+echo "Projektordner:"
+echo "  $PROJECT"
+echo
+echo "Virtuelle Umgebung:"
+echo "  $PROJECT/.venv"
+echo
+echo "Öffne den Python-Arbeitsplatz ..."
+
+python-start "$NAME"
