@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+ROOT="$HOME/Projekte/Python"
+
+if [[ $# -ne 1 ]]; then
+    echo "Aufruf:"
+    echo "  python-start PROJEKTNAME"
+    exit 1
+fi
+
+if [[ "$1" = /* ]]; then
+    PROJECT="$1"
+else
+    PROJECT="$ROOT/$1"
+fi
+
+if [[ ! -d "$PROJECT" ]]; then
+    echo "Projekt nicht gefunden:"
+    echo "  $PROJECT"
+    exit 1
+fi
+
+PROJECT="$(realpath "$PROJECT")"
+VENV="$PROJECT/.venv"
+
+if [[ ! -x "$VENV/bin/python" ]]; then
+    echo "Erstelle fehlende virtuelle Umgebung ..."
+    python -m venv "$VENV"
+fi
+
+echo "Öffne Python-Arbeitsplatz:"
+echo "  $PROJECT"
+
+# Python-Workspace fokussieren.
+niri msg action focus-workspace python >/dev/null 2>&1 || true
+sleep 0.3
+
+# Projektordner als echten Zed-Workspace öffnen.
+# main.py und README.md werden zusätzlich direkt als Tabs geöffnet,
+# sofern sie im Projekt vorhanden sind.
+ZED_PATHS=("$PROJECT")
+
+[[ -f "$PROJECT/main.py" ]] &&
+    ZED_PATHS+=("$PROJECT/main.py")
+
+[[ -f "$PROJECT/README.md" ]] &&
+    ZED_PATHS+=("$PROJECT/README.md")
+
+nohup zeditor -n "${ZED_PATHS[@]}" \
+    >"$HOME/.local/state/zed-python-launch.log" 2>&1 &
+
+sleep 1
+
+# Separates Ghostty-Terminal mit aktivierter Projekt-.venv öffnen.
+mkdir -p "$HOME/.cache"
+
+nohup env -u M4J0R_FASTFETCH_SHOWN \
+    ZDOTDIR="$HOME/.config/zsh/python-shell" \
+    M4J0R_PYTHON_VENV="$VENV" \
+    /usr/bin/ghostty \
+        --gtk-single-instance=false \
+        --working-directory="$PROJECT" \
+        --title="m4j0r-python-terminal" \
+    >"$HOME/.cache/m4j0r-python-ghostty.log" 2>&1 &

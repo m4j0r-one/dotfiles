@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+KDE_PROFILE="$HOME/.mozilla/firefox/2GjgOx0v.Profil 1"
+NIRI_PROFILE="$HOME/.mozilla/firefox/xqvwoxnt.Niri-m4j0r"
+
+if [[ -n "${NIRI_SOCKET:-}" ]] ||
+   [[ "${XDG_CURRENT_DESKTOP:-}" == *niri* ]]; then
+    PROFILE="$NIRI_PROFILE"
+else
+    PROFILE="$KDE_PROFILE"
+fi
+
+exec /usr/bin/firefox \
+    --profile "$PROFILE" \
+    --no-remote \
+    "$@"
