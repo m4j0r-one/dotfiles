@@ -1,0 +1,12 @@
+[Unit]
+Description=m4j0r woechentliche Backups in den lokalen Nextcloud-Syncordner
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemd-inhibit --what=sleep:shutdown --mode=block --who=m4j0r-backup --why=Woechentliches-Backup /home/m4j0r/scripts/weekly-backup-runner.sh
+Nice=15
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+CPUWeight=10
+IOWeight=10
+TimeoutStartSec=2h

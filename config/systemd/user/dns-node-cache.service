@@ -1,0 +1,6 @@
+[Unit]
+Description=Update DNS node cache for Conky
+
+[Service]
+Type=oneshot
+ExecStart=/home/m4j0r/scripts/Conky/dns/update_dns_node_cache.sh

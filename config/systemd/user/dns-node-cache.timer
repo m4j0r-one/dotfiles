@@ -1,0 +1,10 @@
+[Unit]
+Description=Run DNS node cache update every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+Unit=dns-node-cache.service
+
+[Install]
+WantedBy=timers.target

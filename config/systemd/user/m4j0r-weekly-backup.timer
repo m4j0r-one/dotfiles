@@ -1,0 +1,12 @@
+[Unit]
+Description=Prueft stuendlich, ob das woechentliche m4j0r-Backup faellig ist
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+AccuracySec=2min
+RandomizedDelaySec=5min
+Unit=m4j0r-weekly-backup.service
+
+[Install]
+WantedBy=timers.target

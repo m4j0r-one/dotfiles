@@ -1,0 +1,7 @@
+[Unit]
+Description=Update Unraid cache files for Conky
+
+[Service]
+Type=oneshot
+ExecStart=/home/m4j0r/scripts/Conky/unraid/update_unraid_node_cache.sh
+ExecStart=/home/m4j0r/scripts/Conky/unraid/update_hdd_cycles_cache.sh

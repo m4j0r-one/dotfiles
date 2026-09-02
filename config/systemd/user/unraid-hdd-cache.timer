@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Unraid HDD cycle cache update every 10 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10min
+Unit=unraid-hdd-cache.service
+
+[Install]
+WantedBy=timers.target
