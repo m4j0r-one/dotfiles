@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+umask 077
+
+readonly BACKUP_USER="m4j0r"
+readonly BACKUP_UID="$(id -u "${BACKUP_USER}")"
+readonly BACKUP_GID="$(id -g "${BACKUP_USER}")"
+readonly RUNTIME_DIR="/run/user/${BACKUP_UID}"
+readonly OUTPUT="${RUNTIME_DIR}/m4j0r-private-root-files.tar"
+
+declare -a ROOT_PATHS=(
+    "etc/NetworkManager/system-connections"
+    "etc/wireguard"
+    "etc/openvpn"
+    "etc/credstore"
+    "etc/credstore.encrypted"
+    "etc/coolercontrol/.passwd"
+    "etc/coolercontrol/coolercontrol.key"
+    "etc/coolercontrol/coolercontrol.crt"
+)
+
+[[ "${EUID}" -eq 0 ]] || { printf 'Dieses Hilfsprogramm muss als root laufen.\n' >&2; exit 1; }
+[[ -d "${RUNTIME_DIR}" ]] || { printf 'Laufzeitverzeichnis fehlt: %s\n' "${RUNTIME_DIR}" >&2; exit 1; }
+
+runtime_owner="$(stat -c '%u' "${RUNTIME_DIR}")"
+[[ "${runtime_owner}" == "${BACKUP_UID}" ]] || { printf 'Falscher Eigentümer von %s\n' "${RUNTIME_DIR}" >&2; exit 1; }
+
+existing=()
+for path in "${ROOT_PATHS[@]}"; do
+    [[ -e "/${path}" ]] && existing+=("${path}")
+done
+
+rm -f -- "${OUTPUT}"
+((${#existing[@]} > 0)) || exit 0
+
+tmp="$(mktemp "${RUNTIME_DIR}/.m4j0r-private-root.XXXXXXXX")"
+trap 'rm -f -- "${tmp:-}"' EXIT
+
+tar -C / -cpf "${tmp}" "${existing[@]}"
+chown "${BACKUP_UID}:${BACKUP_GID}" "${tmp}"
+chmod 600 "${tmp}"
+mv -fT -- "${tmp}" "${OUTPUT}"
+trap - EXIT
