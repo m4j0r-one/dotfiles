@@ -1,0 +1,5 @@
+[sftp.m4j0r-web]
+host = "212.227.86.224"
+user = "m4j0r"
+port = 22
+identity_agent = "/run/user/1000/ssh-agent.socket"

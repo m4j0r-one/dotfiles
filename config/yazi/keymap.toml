@@ -1,0 +1,59 @@
+[[mgr.prepend_keymap]]
+on   = "<C-c>"
+run  = "yank"
+desc = "Kopieren"
+
+[[mgr.prepend_keymap]]
+on   = "<C-x>"
+run  = "yank --cut"
+desc = "Ausschneiden"
+
+[[mgr.prepend_keymap]]
+on   = "<C-v>"
+run  = "paste"
+desc = "Einfügen"
+
+[[mgr.prepend_keymap]]
+on   = "<F2>"
+run  = "rename --cursor=before_ext"
+desc = "Umbenennen"
+
+[[mgr.prepend_keymap]]
+on   = "<Delete>"
+run  = "remove"
+desc = "In den Papierkorb"
+
+[[mgr.prepend_keymap]]
+on   = "<C-f>"
+run  = "search --via=fd"
+desc = "Dateien suchen"
+
+[[mgr.prepend_keymap]]
+on   = "<F1>"
+run  = "help"
+desc = "Yazi-Hilfe"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "w" ]
+run  = "cd sftp://m4j0r-web"
+desc = "Webserver per SFTP öffnen"
+
+[[mgr.prepend_keymap]]
+on   = [ "M", "a" ]
+run  = "plugin gvfs -- add-mount"
+desc = "Netzwerkfreigabe hinzufügen"
+
+[[mgr.prepend_keymap]]
+on   = [ "M", "m" ]
+run  = "plugin gvfs -- select-then-mount --jump"
+desc = "Netzwerkfreigabe mounten"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "plugin gvfs -- jump-to-device"
+desc = "Zu Netzwerkfreigabe springen"
+
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Ordner öffnen oder Datei starten"

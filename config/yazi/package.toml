@@ -1,0 +1,12 @@
+[[plugin.deps]]
+use = "boydaihungst/gvfs"
+rev = "a85d659"
+hash = "1866f00532ba80f895544f7348e89e53"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "4dc7f1b"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[flavor]
+deps = []

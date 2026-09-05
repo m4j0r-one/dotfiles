@@ -1,0 +1,249 @@
+/* ============================================================
+   m4j0r.one GTK3 · Neon Glass
+   passend zum GTK4-Theme
+   ============================================================ */
+
+@define-color m4_bg        #080b12;
+@define-color m4_bg2       #0d111b;
+@define-color m4_bg3       #111827;
+
+@define-color m4_text      #f4f7ff;
+@define-color m4_muted     #8b97aa;
+
+@define-color m4_cyan      #35d9ff;
+@define-color m4_pink      #ff4f87;
+@define-color m4_orange    #ffb000;
+
+@define-color m4_border    #223348;
+
+
+/* Hauptfenster */
+
+window,
+window.background,
+.background {
+    background-color: @m4_bg;
+    color: @m4_text;
+}
+
+
+/* Headerbar */
+
+headerbar,
+.titlebar {
+    background-image: linear-gradient(
+        to bottom,
+        #0e1520,
+        #090d15
+    );
+
+    color: @m4_text;
+
+    border-bottom: 1px solid rgba(53, 217, 255, 0.20);
+}
+
+headerbar label,
+.titlebar label {
+    color: @m4_text;
+}
+
+
+/* Buttons */
+
+button {
+    background-image: none;
+    background-color: rgba(17, 24, 39, 0.92);
+
+    color: @m4_text;
+
+    border: 1px solid rgba(53, 217, 255, 0.18);
+    border-radius: 8px;
+
+    padding: 5px 10px;
+}
+
+button:hover {
+    background-color: rgba(53, 217, 255, 0.10);
+
+    color: @m4_cyan;
+
+    border-color: rgba(53, 217, 255, 0.42);
+}
+
+button:active,
+button:checked {
+    background-color: rgba(255, 79, 135, 0.13);
+
+    color: @m4_pink;
+
+    border-color: rgba(255, 79, 135, 0.38);
+}
+
+
+/* Eingabefelder / Suche */
+
+entry {
+    background-color: rgba(13, 17, 27, 0.96);
+
+    color: @m4_text;
+
+    border: 1px solid rgba(53, 217, 255, 0.20);
+    border-radius: 8px;
+
+    padding: 6px 9px;
+}
+
+entry:focus {
+    border-color: @m4_cyan;
+}
+
+entry selection {
+    background-color: rgba(255, 79, 135, 0.35);
+    color: #ffffff;
+}
+
+
+/* Dateiliste */
+
+.view,
+treeview.view,
+treeview {
+    background-color: @m4_bg;
+
+    color: @m4_text;
+}
+
+.view:selected,
+treeview.view:selected,
+treeview:selected {
+    background-color: rgba(53, 217, 255, 0.28);
+
+    color: #ffffff;
+}
+
+.view:selected:focus,
+treeview.view:selected:focus {
+    background-color: rgba(53, 217, 255, 0.36);
+
+    color: #ffffff;
+}
+
+
+/* Sidebar */
+
+placessidebar,
+placessidebar list,
+.sidebar {
+    background-color: @m4_bg2;
+
+    color: @m4_text;
+}
+
+placessidebar row {
+    color: @m4_text;
+
+    border-radius: 7px;
+}
+
+placessidebar row:hover {
+    background-color: rgba(53, 217, 255, 0.08);
+}
+
+placessidebar row:selected {
+    background-color: rgba(53, 217, 255, 0.18);
+
+    color: @m4_cyan;
+}
+
+
+/* Pfad-/Locationbar */
+
+.path-bar button {
+    background-color: @m4_bg3;
+
+    color: @m4_text;
+
+    border-color: rgba(53, 217, 255, 0.14);
+}
+
+.path-bar button:hover {
+    color: @m4_cyan;
+
+    border-color: rgba(53, 217, 255, 0.35);
+}
+
+
+/* ComboBox / Dateityp */
+
+combobox button {
+    background-color: @m4_bg3;
+
+    color: @m4_text;
+
+    border-color: rgba(53, 217, 255, 0.18);
+}
+
+
+/* Menüs */
+
+menu,
+.menu,
+.context-menu {
+    background-color: @m4_bg2;
+
+    color: @m4_text;
+
+    border: 1px solid rgba(53, 217, 255, 0.22);
+}
+
+menuitem {
+    color: @m4_text;
+}
+
+menuitem:hover {
+    background-color: rgba(53, 217, 255, 0.12);
+
+    color: @m4_cyan;
+}
+
+
+/* Separator */
+
+separator {
+    background-color: rgba(53, 217, 255, 0.12);
+}
+
+
+/* Scrollbars */
+
+scrollbar {
+    background-color: @m4_bg;
+}
+
+scrollbar slider {
+    min-width: 7px;
+    min-height: 7px;
+
+    background-color: #223348;
+
+    border-radius: 8px;
+}
+
+scrollbar slider:hover {
+    background-color: rgba(53, 217, 255, 0.55);
+}
+
+
+/* Tooltip */
+
+tooltip {
+    background-color: @m4_bg2;
+
+    color: @m4_text;
+
+    border: 1px solid rgba(53, 217, 255, 0.25);
+}
+
+tooltip label {
+    color: @m4_text;
+}

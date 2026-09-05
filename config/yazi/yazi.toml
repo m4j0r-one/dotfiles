@@ -1,0 +1,5 @@
+
+[opener]
+edit = [
+    { run = 'zeditor --wait %s', block = true, desc = "Zed", for = "unix" },
+]

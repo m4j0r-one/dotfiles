@@ -96,7 +96,8 @@ Hinweise:
   selbst an. Ein vollständiges Löschen von ~/.cache findet nicht statt.
 
   Die Backup-Bereinigung arbeitet ausschließlich in diesen festen Pfaden:
-    ~/.config/niri, ~/.config/ghostty, ~/.config/fastfetch, ~/.local/bin
+    ~/.config/niri, ~/.config/ghostty, ~/.config/fastfetch, ~/.config/yazi,
+    ~/.local/bin und ~/scripts/Conky
   Erfasst werden nur reguläre Dateien namens *.bak, *.bak-*, *.backup oder
   *.backup-*. Vor dem Löschen werden alle Treffer angezeigt und bestätigt.
 USAGE
@@ -519,7 +520,9 @@ BACKUP_ROOTS=(
   "$HOME/.config/niri"
   "$HOME/.config/ghostty"
   "$HOME/.config/fastfetch"
+  "$HOME/.config/yazi"
   "$HOME/.local/bin"
+  "$HOME/scripts/Conky"
 )
 
 BACKUP_CANDIDATES=()
