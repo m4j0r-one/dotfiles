@@ -274,7 +274,7 @@ verify_archive() {
 
     if [[ -f "${archive}.sha256" ]]; then
         printf '\nPruefe Archiv-Pruefsumme ...\n'
-        (cd "$(dirname "$archive")" && sha256sum -c "$(basename "${archive}.sha256")")
+        (cd "$(dirname "$archive")" && sha256sum -c "$(basename "${archive}.sha256")") || return 1
     else
         printf '\nHinweis: Keine externe SHA256-Datei gefunden.\n'
     fi
