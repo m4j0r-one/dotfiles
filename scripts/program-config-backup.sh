@@ -7,7 +7,7 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 umask 077
 
-readonly SCRIPT_VERSION="2026-07-10.3"
+readonly SCRIPT_VERSION="2026-09-05.1"
 readonly USER_HOME="/home/m4j0r"
 readonly BACKUP_ROOT="${USER_HOME}/Backup/Configs"
 readonly INSTALLED_SCRIPT="${USER_HOME}/scripts/program-config-backup.sh"
@@ -184,6 +184,41 @@ copy_steam_nonsecret_settings() {
     shopt -u nullglob
 }
 
+copy_obs_settings() {
+    local payload="$1"
+    local obs_root="${USER_HOME}/.config/obs-studio"
+
+    if [[ ! -d "$obs_root" ]]; then
+        record_missing "$obs_root"
+        return 0
+    fi
+
+    # Szenensammlungen enthalten Quellen, Layouts und Szenen.
+    copy_path "${obs_root}/basic/scenes" "$payload"
+
+    # Globale OBS-Einstellungen.
+    copy_path "${obs_root}/global.ini" "$payload"
+    copy_path "${obs_root}/user.ini" "$payload"
+
+    # Profile gezielt sichern. service.json wird bewusst ausgelassen,
+    # weil darin Streaming-Dienste bzw. Zugangsdaten enthalten sein können.
+    local profile
+    while IFS= read -r -d '' profile; do
+        copy_path "${profile}/basic.ini" "$payload"
+
+        [[ -e "${profile}/recordEncoder.json" ]] &&
+            copy_path "${profile}/recordEncoder.json" "$payload"
+
+        [[ -e "${profile}/streamEncoder.json" ]] &&
+            copy_path "${profile}/streamEncoder.json" "$payload"
+    done < <(
+        find "${obs_root}/basic/profiles" \
+            -mindepth 1 -maxdepth 1 -type d -print0 2>/dev/null
+    )
+
+    return 0
+}
+
 copy_user_configs() {
     local payload="$1"
     local path
@@ -219,6 +254,7 @@ copy_user_configs() {
         "${USER_HOME}/.config/user-dirs.dirs"
         "${USER_HOME}/.config/user-dirs.locale"
         "${USER_HOME}/.config/gamemode.ini"
+        "${USER_HOME}/.config/ncspot/config.toml"
         "${USER_HOME}/.config/Nextcloud/nextcloud.cfg"
         "${USER_HOME}/.config/nextcloud/nextcloud.cfg"
         "${USER_HOME}/.ssh/config"
@@ -226,6 +262,8 @@ copy_user_configs() {
 
     local -a directories=(
         "${USER_HOME}/.config/MangoHud"
+        "${USER_HOME}/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios"
+        "${USER_HOME}/.config/zed"
         "${USER_HOME}/.config/fastfetch"
         "${USER_HOME}/.config/neofetch"
         "${USER_HOME}/.config/Kvantum"
@@ -282,6 +320,7 @@ copy_user_configs() {
     copy_tauon_settings "$payload"
     copy_spotify_settings "$payload"
     copy_steam_nonsecret_settings "$payload"
+    copy_obs_settings "$payload"
 
     # Die tatsaechlich laufende Version des Backup-Skripts wird mitgesichert.
     copy_as "$SCRIPT_SOURCE" "${payload}${INSTALLED_SCRIPT}"
@@ -391,6 +430,7 @@ Mitgesichert werden unter anderem:
 - Firefox chrome/user.js/prefs und Erweiterungslisten
 - Tauon-Konfiguration, Playlists und Radio-Einstellungen
 - Spotify-Prefs, Steam-Bibliothek und benutzerdefinierte Shortcuts
+- OBS Studio: Szenensammlungen, Profile und Aufnahme-/Encoder-Einstellungen
 - Nextcloud-Desktop-Client-Konfiguration
 - Paket-, Flatpak-, Font- und Service-Listen
 
