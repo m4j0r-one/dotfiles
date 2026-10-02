@@ -265,6 +265,7 @@ copy_user_configs() {
         "${USER_HOME}/.config/unity3d/Ludeon Studios/RimWorld by Ludeon Studios"
         "${USER_HOME}/.config/zed"
         "${USER_HOME}/.config/fastfetch"
+        "${USER_HOME}/.config/kitty"
         "${USER_HOME}/.config/neofetch"
         "${USER_HOME}/.config/Kvantum"
         "${USER_HOME}/.config/qt5ct"
