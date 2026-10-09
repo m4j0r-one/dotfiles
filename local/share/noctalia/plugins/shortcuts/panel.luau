@@ -165,7 +165,7 @@ end
 
 render = function()
     panel.render(ui.column({ flexGrow = 1, gap = 12, padding = 14,
-        fill = "#0b1220e8", border = "#7dcfff55", borderWidth = 1, radius = 14 }, {
+        fill = "#0b12208c", border = "#7dcfff55", borderWidth = 1, radius = 14 }, {
         ui.row({ gap = 10, align = "center" }, {
             ui.glyph({ name = "keyboard", size = 24, color = CYAN }),
             ui.column({ gap = 2, flexGrow = 1 }, {
