@@ -22,27 +22,6 @@
     }
 
 
-    // m4j0r: Noctalia Frosted Glass
-    // Noctalia liefert selbst die exakte Blur-Form für Bar und Panels.
-    layer-rule {
-        match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
-
-        background-effect {
-            xray true
-        }
-    }
-
-
-       // m4j0r: Noctalia darf Fenster auf DP-1 nicht verdecken
-    layer-rule {
-        match namespace="^noctalia-background-DP-1$"
-
-        background-effect {
-            blur false
-            xray false
-        }
-    }
-
 // m4j0r-fullwidth-apps
 window-rule {
     match app-id=r#"^firefox$"#
@@ -63,18 +42,6 @@ layer-rule {
     }
 }
 
-// m4j0r: EasyEffects auf DP-2
-window-rule {
-    match app-id=r#"^com\.github\.wwmm\.easyeffects$"#
-
-    open-on-output "DP-2"
-    open-floating true
-
-    default-column-width { fixed 820; }
-    default-window-height { fixed 620; }
-
-    default-floating-position x=24 y=105 relative-to="bottom-right"
-}
 
 // m4j0r: Audio Visualizer Frosted Glass
 layer-rule {
@@ -89,126 +56,31 @@ layer-rule {
 }
 // m4j0r: Battle.net immer im Tiling öffnen
 window-rule {
-    match app-id=r#"^steam_app_4107387238$"# title=r#"^Battle\.net$"#
+    match app-id=r#"^steam_app_3699227100$"# title=r#"^Battle\.net$"#
 
     open-floating false
 }
 
 // m4j0r: Unsichtbares Battle.net-Hilfsfenster ausblenden
 window-rule {
-    match app-id=r#"^steam_app_4107387238$"# title=r#"^$"#
+    match app-id=r#"^steam_app_3699227100$"# title=r#"^$"#
 
     opacity 0.0
 }
 
 // m4j0r: World of Warcraft Gaming
 window-rule {
-    match app-id=r#"^steam_app_4107387238$"# title=r#"^World of Warcraft$"#
+    match app-id=r#"^steam_app_3699227100$"# title=r#"^World of Warcraft$"#
 
     open-on-output "DP-1"
     open-floating false
     open-fullscreen true
 }
 
-// m4j0r: Vollbreiten-Hintergrund der DP-2-Bar unsichtbar
-// Die mittlere Capsule und deren Widgets bleiben erhalten.
-layer-rule {
-    match namespace="^noctalia-background-DP-2$"
 
-    background-effect {
-        blur true
-        xray true
-    }
-}
-
-// BEGIN m4j0r Python Workspace
-
-workspace "python" {
-    open-on-output "DP-1"
-}
-
-// Ghostty mit festem Python-Arbeitsplatz.
+// BEGIN m4j0r Kitty Neon Glass
 window-rule {
-    match app-id=r#"(?i).*ghostty.*"# title="^m4j0r-python-terminal$"
-
-
-
-    open-maximized false
-    open-on-workspace "python"
-    default-column-width { proportion 0.5; }
-    open-focused true
-}
-
-// END m4j0r Python Workspace
-
-
-// ------------------------------------------------------------
-// Nautilus – dezenter Neon-Glass-Blur
-// ------------------------------------------------------------
-
-window-rule {
-    match app-id="Nautilus"
-
-    // Verhindert den blauen Fokus-Hintergrund im transparenten Fenster.
-    draw-border-with-background false
-
-    opacity 0.45
-
-    background-effect {
-        blur true
-        xray true
-        noise 0.02
-        saturation 1.35
-    }
-
-    popups {
-        geometry-corner-radius 15
-        opacity 0.95
-
-        background-effect {
-            blur true
-            xray true
-            noise 0.02
-            saturation 1.35
-        }
-    }
-}
-
-// BEGIN m4j0r Spotify Neon Glass
-window-rule {
-    match app-id=r#"(?i)spotify"#
-
-    draw-border-with-background false
-    opacity 0.90
-
-    geometry-corner-radius 18
-    clip-to-geometry true
-
-    background-effect {
-        blur true
-        xray true
-        noise 0.02
-        saturation 1.35
-    }
-
-    popups {
-        geometry-corner-radius 14
-        opacity 0.98
-
-        background-effect {
-            blur true
-            xray true
-            noise 0.015
-            saturation 1.25
-        }
-    }
-}
-// END m4j0r Spotify Neon Glass
-
-
-// BEGIN m4j0r Ghostty Neon Glass
-window-rule {
-    match app-id=r#"(?i).*ghostty.*"#
+    match app-id=r#"^kitty$"#
 
     draw-border-with-background false
 
@@ -234,11 +106,11 @@ window-rule {
         }
     }
 }
-// END m4j0r Ghostty Neon Glass
+// END m4j0r Kitty Neon Glass
 
-// BEGIN m4j0r Ghostty Half Width
+// BEGIN m4j0r Kitty Half Width
 window-rule {
-    match app-id=r#"(?i).*ghostty.*"#
+    match app-id=r#"^kitty$"#
 
     open-maximized false
     open-maximized-to-edges false
@@ -248,7 +120,7 @@ window-rule {
         proportion 0.5
     }
 }
-// END m4j0r Ghostty Half Width
+// END m4j0r Kitty Half Width
 
 // BEGIN m4j0r Firefox Neon Glass
 window-rule {
@@ -322,7 +194,6 @@ window-rule {
     open-maximized false
     open-maximized-to-edges false
     open-fullscreen false
-    open-on-workspace "python"
     default-column-width { proportion 0.5; }
     open-focused true
 
@@ -361,21 +232,6 @@ window-rule {
     open-fullscreen true
 }
 // End Diablo 4
-// ─── Ghostty: m4j0r.one Blur ─────────────────────────
-
-window-rule {
-    match app-id=r#"^com\.mitchellh\.ghostty$"#
-
-    geometry-corner-radius 16
-    clip-to-geometry true
-
-    background-effect {
-        blur true
-        xray true
-        saturation 1.15
-        noise 0.01
-    }
-}
 
 // BEGIN m4j0r Thunderbird Neon Glass
 window-rule {
@@ -431,17 +287,33 @@ window-rule {
 }
 // END m4j0r Discord Neon Glass
 
-// Rimworld
+// RimWorld
 window-rule {
-    match app-id=r#"^gamescope$"#
+    match app-id=r#"^RimWorldLinux$"#
 
     open-on-output "DP-1"
+    open-floating false
+    open-fullscreen true
 }
 
+
+// BEGIN m4j0r Noctalia v5 Frosted Glass
+// Native Noctalia v5 Layer, ohne Quickshell
 layer-rule {
-    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    match namespace=r#"^noctalia-(bar-[^"]+|notification|dock|panel|attached-panel|osd)$"#
 
     background-effect {
         xray false
     }
 }
+
+// Window Switcher
+layer-rule {
+    match namespace="^noctalia-window-switcher$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+// END m4j0r Noctalia v5 Frosted Glass

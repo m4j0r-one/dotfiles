@@ -1,7 +1,7 @@
 // ────────────── Startup Applications ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
-    spawn-sh-at-startup "qs -c noctalia-shell"
+    spawn-at-startup "noctalia"
 
     // Creative Stage automatisch verbinden
     // spawn-sh-at-startup "$HOME/.local/bin/connect-creative-stage.sh"
@@ -12,5 +12,5 @@
 // m4j0r: Audio-Visualizer nur unter Niri
 spawn-sh-at-startup "$HOME/.local/bin/start-m4j0r-visualizer.sh"
 
-// m4j0r: DP-2 Wallpaper passend zum Workspace wechseln
-spawn-sh-at-startup "$HOME/.local/bin/niri-dp2-wallpaper-watcher.py"
+// m4j0r: Random-Wallpaper bei Workspace-Wechsel auf beiden Monitoren
+spawn-sh-at-startup "$HOME/.local/bin/niri-random-wallpaper-watcher-v5.py"

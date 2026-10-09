@@ -1,0 +1,20 @@
+id = "m4j0r/shortcuts"
+name = "m4j0r Shortcut Cheatsheet"
+version = "2.0.1"
+plugin_api = 24
+author = "m4j0r"
+license = "MIT"
+description = "Frosted glass shortcuts for Yazi, ncspot and live Niri keybindings."
+tags = ["Productivity", "Niri"]
+icon = "keyboard"
+
+[[widget]]
+id = "keyboard"
+entry = "widget.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 760
+height = 720
+placement = "attached"

@@ -1,0 +1,84 @@
+[accessibility]
+ui_scale = 1.0
+
+[shell]
+polkit_agent = true
+font_family = "MesloLGS Nerd Font"
+corner_radius_scale = 1.0
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "m4j0r-One"
+
+[bar.main]
+enabled = true
+position = "top"
+background_opacity = 0.61
+compositor_blur = true
+radius = 14
+margin_ends = 10
+margin_edge = 8
+widget_spacing = 7
+shadow = true
+capsule = true
+capsule_opacity = 0.83
+
+start = ["tray"]
+center = ["workspaces", "active_window", "clock", "notifications", "shortcuts"]
+end = ["bluetooth", "network", "volume", "calculator"]
+
+[bar.main.monitor.dp1]
+match = "DP-1"
+enabled = false
+
+[dock]
+enabled = false
+
+[wallpaper]
+enabled = true
+directory = "/home/m4j0r/Bilder/Wallpapers/Niri-Random"
+fill_mode = "crop"
+transition = ["fade", "disc", "stripes", "wipe", "honeycomb"]
+
+[wallpaper.automation]
+enabled = false
+
+
+[widget.shortcuts]
+type = "m4j0r/shortcuts:keyboard"
+
+[plugins]
+enabled = ["m4j0r/shortcuts"]
+
+[[plugins.source]]
+name = "m4j0r-local"
+kind = "path"
+location = "/home/m4j0r/.local/share/noctalia/plugins"
+enabled = true
+
+
+[widget.clock]
+format = "%H:%M %a, %b %d"
+tooltip_format = "%H:%M %a, %b %d"
+
+[widget.workspaces]
+style = "regular"
+show_labels = true
+label_source = "id"
+max_label_chars = 2
+labels_only_when_occupied = true
+hide_when_empty = false
+show_all_outputs = false
+focused_color = "primary"
+occupied_color = "secondary"
+empty_color = "secondary"
+pill_scale = 0.63
+
+[widget.calculator]
+type = "custom_button"
+glyph = "calculator"
+tooltip = "Taschenrechner"
+
+[widget.calculator.actions]
+left = 'panel-toggle launcher "/calc "'
