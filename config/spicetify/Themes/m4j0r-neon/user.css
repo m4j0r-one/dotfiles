@@ -1,0 +1,58 @@
+/* m4j0r Neon – Basis v1 */
+
+:root {
+    --spice-main: #03060c;
+    --spice-sidebar: #03060c;
+    --spice-player: #03060c;
+    --spice-card: #101b26;
+    --spice-text: #d9f7ff;
+    --spice-subtext: #6f8ea3;
+    --spice-button: #00e5ff;
+    --spice-button-active: #ff2bd6;
+    --spice-highlight: #14303a;
+    --spice-selected-row: #14303a;
+    --encore-accent-color: #00e5ff;
+}
+
+body {
+    background-color: #03060c;
+}
+
+.Root__now-playing-bar {
+    background-color: #03060c !important;
+    border-top: 1px solid #14303a;
+}
+
+
+
+/*
+ * m4j0r Neon v2.2
+ * Einheitliche Playlist-Hintergründe
+ */
+
+/* Statische Hintergrundfarben */
+.Root__main-view [data-testid="entity-header"]
+> .main-entityHeader-backgroundColor,
+
+.Root__main-view [data-testid="entity-header"]
+> div[style*="background-color"] {
+
+    --background-base: #081421 !important;
+
+    background: linear-gradient(
+        125deg,
+        #081421 0%,
+        #10202b 70%,
+        #03060c 100%
+    ) !important;
+}
+
+/* Dynamische Overlay-Verläufe abschalten */
+.Root__main-view [data-testid="entity-header"]
+> .main-entityHeader-backgroundColor::before,
+
+.Root__main-view [data-testid="entity-header"]
+> .main-entityHeader-backgroundColor::after {
+
+    background-image: none !important;
+}

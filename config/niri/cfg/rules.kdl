@@ -317,3 +317,16 @@ layer-rule {
     }
 }
 // END m4j0r Noctalia v5 Frosted Glass
+
+// BEGIN m4j0r Spotify Neon Glass
+window-rule {
+    match app-id="^Spotify$"
+
+    opacity 0.88
+
+    background-effect {
+        blur true
+        xray true
+    }
+}
+// END m4j0r Spotify Neon Glass

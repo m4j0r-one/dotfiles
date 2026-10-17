@@ -2,7 +2,12 @@
 
 set -uo pipefail
 
-PLAYER="spotify_player"
+PLAYER="$(playerctl -l 2>/dev/null | grep -E '^spotify(\.|$)' | head -n1 || true)"
+
+if [[ -z "$PLAYER" ]]; then
+    exit 0
+fi
+
 COVER="/tmp/spotify_cover_niri.jpg"
 BLUR="/tmp/spotify_cover_blur_niri.png"
 STATE="$HOME/.cache/conky/niri/spotify-art-url.txt"

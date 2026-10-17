@@ -97,17 +97,8 @@ make_images_if_changed() {
 }
 
 get_player() {
-  local players
-
-  players="$(playerctl -l 2>/dev/null || true)"
-
-  if grep -Fxq 'spotify_player' <<< "$players"; then
-    printf '%s\n' 'spotify_player'
-    return
-  fi
-
-  printf '%s\n' "$players" |
-    grep -Ei '^(spotify|spotifyd)(\.|$)' |
+  playerctl -l 2>/dev/null |
+    grep -Ei '^spotify(\.|$)' |
     head -n1
 }
 

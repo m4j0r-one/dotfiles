@@ -7,7 +7,7 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 umask 077
 
-readonly SCRIPT_VERSION="2026-09-05.1"
+readonly SCRIPT_VERSION="2026-10-17.1"
 readonly USER_HOME="/home/m4j0r"
 readonly BACKUP_ROOT="${USER_HOME}/Backup/Configs"
 readonly INSTALLED_SCRIPT="${USER_HOME}/scripts/program-config-backup.sh"
@@ -168,6 +168,18 @@ copy_spotify_settings() {
     shopt -u nullglob
 }
 
+
+copy_spicetify_settings() {
+    local payload="$1"
+    local root="${USER_HOME}/.config/spicetify"
+
+    # Spicetify: Konfiguration und eigenes m4j0r-Theme.
+    # Keine Caches, Binaries oder Testdateien.
+    copy_path "${root}/config-xpui.ini" "$payload"
+    copy_path "${root}/Themes/m4j0r-neon/color.ini" "$payload"
+    copy_path "${root}/Themes/m4j0r-neon/user.css" "$payload"
+}
+
 copy_steam_nonsecret_settings() {
     local payload="$1"
     local steam_root="${USER_HOME}/.local/share/Steam"
@@ -320,6 +332,7 @@ copy_user_configs() {
     copy_firefox_settings "$payload"
     copy_tauon_settings "$payload"
     copy_spotify_settings "$payload"
+    copy_spicetify_settings "$payload"
     copy_steam_nonsecret_settings "$payload"
     copy_obs_settings "$payload"
 
